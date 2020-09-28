@@ -1,0 +1,28 @@
+elk	grizzly bear	1
+pronghorn	grizzly bear	1
+moths	grizzly bear	1
+berries	grizzly bear	1
+pine	grizzly bear	1
+deer mouse	grizzly bear	1
+bighorn sheep	wolf	1
+grasses	bighorn sheep	1
+grey willow	bighorn sheep	1
+deer mouse	red tailed hawk	1
+pine	beaver	1
+pine	elk	1
+pond lily	beaver	1
+beaver	wolf	1
+elk	coyote	1
+grasses	elk	1
+elk	wolf	1
+deer mouse	coyote	1
+pronghorn	coyote	1
+grasses	coyote	1
+grey willow	deer mouse	1
+grey willow	bison	1
+algae	trout	1
+algae	mayfly	1
+trout	bighorn sheep	1
+trout	osprey	1
+osprey	bald eagle	1
+bison	wolf	1
