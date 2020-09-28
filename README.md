@@ -103,6 +103,24 @@ This is an **unweighted** graph, but it is a three-column format with a 1 in the
 
 Badgers are back!  The file `badger-edges.txt` includes the [badger network](https://doi.org/10.1016/j.cub.2013.09.011) from Module 1, with the third column converted to _costs_ (badgers with larger contact times have smaller costs).  This is a **weighted** graph, so you should calculate weighted centralities and visualize the network in GraphSpace.
 
+![badger network](https://els-jbs-prod-cdn.jbs.elsevierhealth.com/cms/attachment/a007c286-ee5a-4385-918b-4139278861f4/gr1.jpg)
+
+## **Optional Challenge Tasks:**  Making Centralities (More) Correct
+
+There were some assumptions we made in this assignment, and there are opportunities to write a nicer `get_path()` function. These are all optional.
+
+1. **Write a _recursive_ `get_path()` function.**  The `get_path()` function in the `utils.py` file uses a WHILE loop to return the path using the predecessor dictionary. However, there's a way to write this recursively, by calling the function from within itself.  Feel free to write a `recursive_get_path()` function in `run.py`.
+
+2. **Modify shortest paths to return ties.** There are some cases when there are multiple shortest paths, and a more complete definition of shortest path betweenness centrality captures this case.  Consider the graph below.
+
+![ties1](figs/ties1.jpg)
+
+There are two shortest paths that go through node C: paths from A to E and paths from B to E. However, there are _other_ shortest paths between those pairs of nodes that do not include C (for example, B-D-E).  In this case, the centrality for the pair (B,E) is the **fraction of shortest paths that go through C**.  When there is only one shortest path, this is 1.  When there are multiple shortest paths, we need to calculate how many of them go through C:
+
+![ties1](figs/ties2.jpg)
+
+The current code arbitrarily selects a single shortest path, so the centralities may be a little off.  In order to implement this version of shortest paths centrality, you need to modify the predecessor dictionary to include _multiple_ predecessors (e.g. a list or a set) for equally-good ways to reach a node.  Then, the `get_path()` function needs to return multiple paths (this is where a recursive `get_multiple_paths()` function will be useful).  Your centralities may be fractions when you implement this version - add a note in the comments if you choose to do this challenge.
+
 ## Submitting
 
 :star2: **You're Done with Tasks A-E!** You just need to submit your python code and share your centrality-weighted graphs with the `BIO331F20` group.  Before you submit `run.py` via Moodle, look through the comments and add any additional ones that explain what your code does.  Code organization and clarity will contribute more points in grading than the programming assignments from previous modules. **Remember to share your centrality-weighted graphs (example, yellowstone, and badger networks) with the GraphSpace group**.
