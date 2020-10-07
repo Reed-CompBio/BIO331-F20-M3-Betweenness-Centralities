@@ -8,26 +8,26 @@ as well.  If directed=True, the file is considered directed and edge_costs and a
 capture directed relationships.
 '''
 def read_edges(fname,directed=False):
-	edge_costs = {}  ## dictionary of dictionaries: {node: {neighbor:cost}}
-	adj_list = {} ## adjacency list dictionary: {node: neighbor_set}
-	with open(fname) as fin:
-		for line in fin:
-			row = line.strip().split('\t')
-			u = row[0]
-			v = row[1]
-			weight = float(row[2])
-			if u not in edge_costs:
-				edge_costs[u] = {}
-				adj_list[u] = set()
-			if v not in edge_costs:
-				edge_costs[v] = {}
-				adj_list[v] = set()
-			edge_costs[u][v] = weight
-			adj_list[u].add(v)
-			if not directed: # include the (v,u) edge
-				edge_costs[v][u] = weight
-				adj_list[v].add(u)
-	return adj_list, edge_costs
+    edge_costs = {}  ## dictionary of dictionaries: {node: {neighbor:cost}}
+    adj_list = {} ## adjacency list dictionary: {node: neighbor_set}
+    with open(fname) as fin:
+        for line in fin:
+            row = line.strip().split('\t')
+            u = row[0]
+            v = row[1]
+            weight = float(row[2])
+            if u not in edge_costs:
+                edge_costs[u] = {}
+                adj_list[u] = set()
+            if v not in edge_costs:
+                edge_costs[v] = {}
+                adj_list[v] = set()
+            edge_costs[u][v] = weight
+            adj_list[u].add(v)
+            if not directed: # include the (v,u) edge
+                edge_costs[v][u] = weight
+                adj_list[v].add(u)
+    return adj_list, edge_costs
 
 '''
 Given a source node u and a target node v and a dictionary pi of predecessors,
@@ -35,24 +35,24 @@ returns the shortest path from u to v.  If there are multiple paths, only
 one is returned.  Returned path is a list of nodes.
 '''
 def get_path(u,v,pi):
-	current = v # start at the END of the path.
-	path = [] # empty path
-	while current != u: # if we're not at the START of the path...
-		path = [current] + path ## add element to beginning of path
-		current = pi[current] ## update current to be the predecessor.
-	path = [u] + path ## add first node to beginning of path
-	return path
+    current = v # start at the END of the path.
+    path = [] # empty path
+    while current != u: # if we're not at the START of the path...
+        path = [current] + path ## add element to beginning of path
+        current = pi[current] ## update current to be the predecessor.
+    path = [u] + path ## add first node to beginning of path
+    return path
 
 
 '''
 Posts the graph G to GraphSpace. Copied from Lab 2.
 '''
 def post(G,gs):
-	try:
-		graph = gs.update_graph(G)
-	except:
-		graph = gs.post_graph(G)
-	return graph
+    try:
+        graph = gs.update_graph(G)
+    except:
+        graph = gs.post_graph(G)
+    return graph
 
 '''
 Returns the hexadecimal color code when given three channels
